@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createStream } from '../../actions/index';
 
 class StreamCreate extends Component {
 
@@ -32,10 +34,10 @@ class StreamCreate extends Component {
     );
   }
 
-  onSubmit(formValues) {
+  onSubmit = (formValues) => {
     // event.preventDefault(); // redux-form did this automatically
-    // formValues arg: {title: "asdf", description: "qwer"}
-    console.log(formValues);
+    // console.log(formValues); // {title: "asdf", description: "qwer"}
+    this.props.createStream(formValues);
   }
 
   render() {
@@ -69,7 +71,10 @@ const validate = (formValues) => {
 
 // hook up redux-form
 // all Fields in this component will be added to store (state.form.streamCreate)
-export default reduxForm({
+const formWrapped = reduxForm({
   form: "streamCreate",
   validate: validate, // add validate function to state.validate
 })(StreamCreate);
+
+// hook up react-redux
+export default connect(null, {createStream})(formWrapped);
