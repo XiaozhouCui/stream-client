@@ -26,6 +26,9 @@ export const createStream = (formValues) => {
     const response = await streams.post("/streams", { ...formValues, userId });
     // after we got response, dispatch the action to reducer
     dispatch({ type: CREATE_STREAM, payload: response.data });
+    // Do some programmatic navigation to get the user back to the root route
+    // require("history").createBrowserHistory
+    
   };
 };
 
