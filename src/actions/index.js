@@ -16,12 +16,14 @@ export const signOut = () => {
 
 // use axios and redux-thunk to handle HTTP requests
 
-// add a new stream
+// add a new stream as a logged in user
 export const createStream = (formValues) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    // get the user ID from redux state.auth.userId
+    const { userId } = getState().auth;
     // first send POST request to server
     // "streams" is an axios instance with baseURL = localhost:3001
-    const response = await streams.post("/streams", formValues);
+    const response = await streams.post("/streams", { ...formValues, userId });
     // after we got response, dispatch the action to reducer
     dispatch({ type: CREATE_STREAM, payload: response.data });
   };
