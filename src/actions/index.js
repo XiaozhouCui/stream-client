@@ -46,8 +46,10 @@ export const fetchStream = (id) => async (dispatch) => {
 
 // update a stream
 export const editStream = (id, formValues) => async (dispatch) => {
-  const response = await streams.put(`/streams/${id}`, formValues);
+  // use "patch" instead of "put", so that only "title" and "description" will be updated and "userId" won't be deleted
+  const response = await streams.patch(`/streams/${id}`, formValues);
   dispatch({ type: EDIT_STREAM, payload: response.data });
+  history.push("/"); // navigate back to StreamList using custom history obj
 };
 
 // delete a stream
