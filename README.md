@@ -14,3 +14,6 @@ Semantic-UI
 client-side OAuth 2
 Google API Library
 ReactDOM portal
+RTMP Server (Node-Media-Server)
+http-flv (flv.js)
+OBS Studio (setup custom rtmp server and STREAM_NAME);

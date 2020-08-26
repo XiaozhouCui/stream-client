@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 function StreamDelete(props) {
   useEffect(() => {
     props.fetchStream(props.match.params.id);
-  }, []);
+  });
 
   const actions = (
     <Fragment>
